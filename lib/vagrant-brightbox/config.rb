@@ -34,10 +34,9 @@ module VagrantPlugins
       attr_accessor :password
 
       # The account id of the account on which operations should be performed
-      # 
+      #
       # @return [String]
       attr_accessor :account
-
 
       # The ID of the Image to use.
       #
@@ -81,7 +80,7 @@ module VagrantPlugins
       # @return [String]
       attr_accessor :user_data
 
-      def initialize(region_specific=false)
+      def initialize(region_specific = false)
         @client_id      = UNSET_VALUE
         @secret  = UNSET_VALUE
         @api_url  = UNSET_VALUE
@@ -91,12 +90,12 @@ module VagrantPlugins
         @account  = UNSET_VALUE
         @image_id                = UNSET_VALUE
         @zone  = UNSET_VALUE
-	@server_build_timeout = UNSET_VALUE
+        @server_build_timeout = UNSET_VALUE
         @server_type      = UNSET_VALUE
-	@server_name	  = UNSET_VALUE
+        @server_name	  = UNSET_VALUE
         @region             = UNSET_VALUE
         @server_groups    = UNSET_VALUE
-	@user_data	    = UNSET_VALUE
+        @user_data	    = UNSET_VALUE
 
         # Internal state (prefix with __ so they aren't automatically
         # merged)
@@ -118,7 +117,7 @@ module VagrantPlugins
       # @param [Hash] attributes Direct attributes to set on the configuration
       #   as a shortcut instead of specifying a full block.
       # @yield [config] Yields a new Brightbox configuration.
-      def region_config(region, attributes=nil, &block)
+      def region_config(region, attributes = nil, &block)
         # Append the block to the list of region configs for that region.
         # We'll evaluate these upon finalization.
         @__region_config[region] ||= []
@@ -182,11 +181,11 @@ module VagrantPlugins
         @server_name = nil if @server_name == UNSET_VALUE
         @zone = nil if @zone == UNSET_VALUE
 
-	# User data is nil by default
-	@user_data = nil if @user_data == UNSET_VALUE
+        # User data is nil by default
+        @user_data = nil if @user_data == UNSET_VALUE
 
-	# The default timeout is 120 seconds
-	@server_build_timeout = 120 if @server_build_timeout == UNSET_VALUE
+        # The default timeout is 120 seconds
+        @server_build_timeout = 120 if @server_build_timeout == UNSET_VALUE
 
         # Compile our region specific configurations only within
         # NON-REGION-SPECIFIC configurations.
@@ -218,20 +217,20 @@ module VagrantPlugins
 
         errors << I18n.t("vagrant_brightbox.config.region_required") if @region.nil?
 
-	errors << I18n.t("vagrant_brightbox.config.region_invalid") unless valid_region?
+        errors << I18n.t("vagrant_brightbox.config.region_invalid") unless valid_region?
 
         if @region && valid_region?
           # Get the configuration for the region we're using and validate only
           # that region.
           config = get_region_config(@region)
 
-	  # Secret could be in fog config file. 
-	  unless fog_config_file_exists?
-	    errors << I18n.t("vagrant_brightbox.config.client_id_required") if \
-	      config.client_id.nil?
-	    errors << I18n.t("vagrant_brightbox.config.secret_required") if \
-	      config.secret.nil?
-	  end
+          # Secret could be in fog config file.
+          unless fog_config_file_exists?
+            errors << I18n.t("vagrant_brightbox.config.client_id_required") if \
+              config.client_id.nil?
+            errors << I18n.t("vagrant_brightbox.config.secret_required") if \
+              config.secret.nil?
+          end
 
         end
 
@@ -244,7 +243,7 @@ module VagrantPlugins
 
       def valid_region?
         return false unless @region =~ /gb1/
-	@region == 'gb1' || !(@auth_url.nil? || @api_url.nil?)
+        @region == 'gb1' || !(@auth_url.nil? || @api_url.nil?)
       end
 
       # This gets the configuration for a specific region. It shouldn't

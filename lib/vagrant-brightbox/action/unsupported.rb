@@ -7,7 +7,7 @@ module VagrantPlugins
         end
 
         def call(env)
-	  env[:ui].warn(I18n.t("vagrant_brightbox.unsupported"))
+          env[:ui].warn(I18n.t("vagrant_brightbox.unsupported"))
 
           @app.call(env)
         end
@@ -15,4 +15,3 @@ module VagrantPlugins
     end
   end
 end
-

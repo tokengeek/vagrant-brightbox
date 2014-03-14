@@ -13,11 +13,11 @@ module VagrantPlugins
         def call(env)
           server = env[:brightbox_compute].servers.get(env[:machine].id)
 
-	  if server.ready?
-	    # Stop the server.
-	    env[:ui].info(I18n.t("vagrant_brightbox.stopping_server"))
-	    server.stop
-	  end
+          if server.ready?
+            # Stop the server.
+            env[:ui].info(I18n.t("vagrant_brightbox.stopping_server"))
+            server.stop
+          end
 
           @app.call(env)
         end

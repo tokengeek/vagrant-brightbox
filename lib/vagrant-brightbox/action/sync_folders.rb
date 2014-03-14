@@ -7,7 +7,7 @@ require "vagrant/util/scoped_hash_override"
 module VagrantPlugins
   module Brightbox
     module Action
-      # This middleware uses `rsync` to sync the folders 
+      # This middleware uses `rsync` to sync the folders
       class SyncFolders
         include Vagrant::Util::ScopedHashOverride
 
@@ -35,8 +35,8 @@ module VagrantPlugins
             hostpath = "#{hostpath}/" if hostpath !~ /\/$/
 
             env[:ui].info(I18n.t("vagrant_brightbox.rsync_folder",
-                                :hostpath => hostpath,
-                                :guestpath => guestpath))
+                                 :hostpath => hostpath,
+                                 :guestpath => guestpath))
 
             # Create the guest path
             env[:machine].communicate.sudo("mkdir -p '#{guestpath}'")

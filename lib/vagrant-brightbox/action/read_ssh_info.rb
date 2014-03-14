@@ -29,16 +29,16 @@ module VagrantPlugins
             return nil
           end
 
-	  if use_private_network?(machine.config.vm.networks)
-	    host_name = server.fqdn
-	  elsif use_ipv6_public_network?(machine.config.vm.networks)
-	    host_name = "ipv6.#{server.fqdn}"
-	  elsif server.public_ip_address
-	    host_name = server.dns_name
-	  else
-	    @logger.error("Cannot find public ip address - defaulting to private")
-	    host_name = server.fqdn
-	  end
+          if use_private_network?(machine.config.vm.networks)
+            host_name = server.fqdn
+          elsif use_ipv6_public_network?(machine.config.vm.networks)
+            host_name = "ipv6.#{server.fqdn}"
+          elsif server.public_ip_address
+            host_name = server.dns_name
+          else
+            @logger.error("Cannot find public ip address - defaulting to private")
+            host_name = server.fqdn
+          end
 
           # Read the DNS info
           return {
@@ -47,16 +47,15 @@ module VagrantPlugins
           }
         end
 
-	def use_private_network?(network_structure)
-	  network_structure.any? {|x| x.first == :private_network }
-	end
+        def use_private_network?(network_structure)
+          network_structure.any? { |x| x.first == :private_network }
+        end
 
-	def use_ipv6_public_network?(network_structure)
-	  network_structure.any? do |element|
-	    element.first == :public_network && element[1][:ipv6]
-	  end
-	end
-
+        def use_ipv6_public_network?(network_structure)
+          network_structure.any? do |element|
+            element.first == :public_network && element[1][:ipv6]
+          end
+        end
       end
     end
   end
