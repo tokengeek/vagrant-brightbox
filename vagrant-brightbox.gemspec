@@ -11,7 +11,7 @@ Gem::Specification.new do |gem|
   gem.description   = "Enables Vagrant to manage servers in Brightbox Cloud."
   gem.summary       = "Enables Vagrant to manage servers in Brightbox Cloud."
 
-  gem.add_runtime_dependency "fog", "~> 1.10.0"
+  gem.add_runtime_dependency "fog-brightbox", "~> 0.0.1"
 
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec", "~> 2.13.0"
