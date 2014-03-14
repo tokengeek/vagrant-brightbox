@@ -1,7 +1,8 @@
 # 0.2.1 (unreleased)
 
 * Confirm before destroying server
-* Handle BoxURL before validate on box startup.
+* HandleBox before validate on box startup.
+* Use fog-brightbox module to reduce dependencies.
 
 # 0.2.0 (April 19, 2013)
 
