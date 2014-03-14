@@ -128,7 +128,7 @@ module VagrantPlugins
 
       def self.action_up
         Vagrant::Action::Builder.new.tap do |b|
-          b.use HandleBoxUrl
+          b.use HandleBox
           b.use ConfigValidate
           b.use ConnectBrightbox
           b.use Call, IsCreated do |env, b2|
